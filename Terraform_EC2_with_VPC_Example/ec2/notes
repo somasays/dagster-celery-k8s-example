@@ -1,0 +1,8 @@
+helm upgrade --install dagster-release dagster/dagster -f values_1.yml \
+  --set runLauncher.type=CeleryK8sRunLauncher \
+  --set dagsterDaemon.queuedRunCoordinator.enabled=true \
+  --set rabbitmq.enabled=true
+
+helm repo add dagster https://dagster-io.github.io/helm
+
+minikube --memory 12000 --cpus 3 start

@@ -1,0 +1,3 @@
+# Yaml for loading our single repository from our repos.py file:
+load_from:
+  - python_file: repos.py
