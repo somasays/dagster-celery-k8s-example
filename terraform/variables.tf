@@ -1,136 +1,49 @@
-# variables.tf
- 
-# Variables for general information
-######################################
- 
-variable "aws_region" {
-  description = "AWS region"
-  type        = string
-  default     = "eu-central-1"
-}
- 
-variable "owner" {
-  description = "Configuration owner"
-  type        = string
+variable "region-master" {
+  type    = string
+  default = "eu-central-1"
 }
 
-variable "aws_profile" {
-  description = "AWS profile to use"
+# VPC Variables
+
+variable "vpc-name" {
   type        = string
+  description = "The name that we will give to our VPC"
+  default     = "dagster-test-vpc"
 }
- 
-variable "aws_region_az" {
-  description = "AWS region availability zone"
+
+variable "owner" {
   type        = string
-  default     = "a"
+  description = "The name that we will give to our VPC"
+  default     = "Soma Sundaram Sekar"
 }
- 
- 
-# Variables for VPC
-######################################
- 
-variable "vpc_cidr_block" {
-  description = "CIDR block for the VPC"
+
+# SG Variables
+
+variable "sg-name" {
   type        = string
-  default     = "10.0.0.0/16"
+  description = "The name that we will give to our Security Group"
+  default     = "dagster-test-sg"
 }
- 
-variable "vpc_dns_support" {
-  description = "Enable DNS support in the VPC"
-  type        = bool
-  default     = true
-}
- 
-variable "vpc_dns_hostnames" {
-  description = "Enable DNS hostnames in the VPC"
-  type        = bool
-  default     = true
-}
- 
- 
-# Variables for Security Group
-######################################
- 
-variable "sg_ingress_proto" {
-  description = "Protocol used for the ingress rule"
+
+# EC2 variables
+
+variable "instance-name" {
   type        = string
-  default     = "tcp"
+  description = "The name that we will give to our instance"
+  default     = "dagster-test-instance"
 }
- 
-variable "sg_ingress_ssh" {
-  description = "Port used for the ingress rule"
+
+variable "instance-type" {
   type        = string
-  default     = "22"
-}
- 
-variable "sg_egress_proto" {
-  description = "Protocol used for the egress rule"
-  type        = string
-  default     = "-1"
-}
- 
-variable "sg_egress_all" {
-  description = "Port used for the egress rule"
-  type        = string
-  default     = "0"
-}
- 
-variable "sg_egress_cidr_block" {
-  description = "CIDR block for the egress rule"
-  type        = string
-  default     = "0.0.0.0/0"
-}
- 
- 
-# Variables for Subnet
-######################################
- 
-variable "sbn_public_ip" {
-  description = "Assign public IP to the instance launched into the subnet"
-  type        = bool
-  default     = true
-}
- 
-variable "sbn_cidr_block" {
-  description = "CIDR block for the subnet"
-  type        = string
-  default     = "10.0.1.0/24"
-}
- 
- 
-# Variables for Route Table
-######################################
- 
-variable "rt_cidr_block" {
-  description = "CIDR block for the route table"
-  type        = string
-  default     = "0.0.0.0/0"
-}
- 
- 
-# Variables for Instance
-######################################
- 
-variable "instance_ami" {
-  description = "ID of the AMI used"
-  type        = string
-  default     = "ami-05f7491af5eef733a" #Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-05f7491af5eef733a (64-bit x86)
-}
- 
-variable "instance_type" {
-  description = "Type of the instance"
-  type        = string
+  description = "The instance type that we will use"
   default     = "t3a.xlarge"
 }
- 
-variable "root_device_type" {
-  description = "Type of the root block device"
+
+variable "ami-id" {
   type        = string
-  default     = "gp2"
+  description = "ID of the Ubuntu AMI"
+  default = "ami-05f7491af5eef733a"
 }
- 
-variable "root_device_size" {
-  description = "Size of the root block device"
-  type        = string
-  default     = "50"
-}
+
+
+
