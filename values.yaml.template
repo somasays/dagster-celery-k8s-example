@@ -189,10 +189,10 @@ dagster-user-deployments:
 
   # List of unique deployments
   deployments:
-    - name: "k8s-example-user-code-1"
+    - name: "custom-usercode-deployment"
       image:
-        repository: "docker.io/dagster/user-code-example"
-        tag: latest
+        repository: "docker.io/somasays/dagster-usercode-example"
+        tag: 0.1
         # Change with caution! If you're using a fixed tag for pipeline run images, changing the
         # image pull policy to anything other than "Always" will use a cached/stale image, which is
         # almost certainly not what you want.
@@ -206,8 +206,10 @@ dagster-user-deployments:
       #   - "-a"
       #   - "define_demo_execution_repo"
       dagsterApiGrpcArgs:
-        - "-f"
-        - "/example_project/example_repo/repo.py"
+        - "--python-file"
+        - "repos.py"
+        - "--attribute"
+        - "example_repository"
       port: 3030
 
       # Additional environment variables to set.
@@ -864,4 +866,3 @@ serviceAccount:
   # Specifies the name for the service account to reference in the chart. Note that setting
   # the global service account name will override this field.
   name: ""
-
